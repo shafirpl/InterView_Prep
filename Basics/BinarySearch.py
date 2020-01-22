@@ -1,18 +1,8 @@
-def binary_search(arr,num):
-    length = len(arr)
-    if (length == 0): return False
-    start = 0
-    end = len(arr) - 1
-    middle = (start+end)//2
-    # if(length % 2 != 0): middle += 1
-    if(arr[middle] == num): 
-        return True
-    elif (len(arr) <= 1): return False
-    else:
-        if(num>arr[middle]): return binary_search(arr[middle+1:],num)
-        else: return binary_search(arr[:middle],num)
+# TLDR: Don't Include the middle point, we don't need to include
+# middle point as we already checked it against something
 
-def binary_search_index(arr,num,start = 0, end = 0, endFlag = True):
+
+def binary_search_recursive(arr,num,start = 0, end = 0, endFlag = True):
     length = len(arr)
     if (length == 0): return -1
     if (endFlag): end = length - 1
@@ -20,10 +10,10 @@ def binary_search_index(arr,num,start = 0, end = 0, endFlag = True):
     if(arr[middle] == num): return middle
     elif(start > end): return -1
     else:
-        if(num>arr[middle]): return binary_search_index(arr,num,middle+1,end,False)
-        else: return binary_search_index(arr,num,start,middle-1,False)
+        if(num>arr[middle]): return binary_search_recursive(arr,num,middle+1,end,False)
+        else: return binary_search_recursive(arr,num,start,middle-1,False)
 
-def binary_search_iter(arr,num):
+def binary_search_iterative(arr,num):
     start = 0
     end = len(arr) - 1
     if( len(arr) == 0): return -1
@@ -41,8 +31,3 @@ def binary_search_iter(arr,num):
             middle = (start + middle) //2
     return -1
 
-#print(binary_search_iter([1,2,3,4],1))
-
-
-# arr = [1,2,3,4]
-# print(binary_search(arr,3))
