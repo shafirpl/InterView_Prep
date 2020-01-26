@@ -13,4 +13,4 @@ def insertion_sort(arr):
         arr[j+1] = key
     return arr
 
-print(insertion_sort([1,0,3,5,1,5,0,2]))
+# print(insertion_sort([1,0,3,5,1,5,0,2]))
