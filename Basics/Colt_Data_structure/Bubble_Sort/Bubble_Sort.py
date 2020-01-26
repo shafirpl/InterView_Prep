@@ -16,7 +16,7 @@ def bubble_sort(arr):
         j = 0
         noSwap = True
         while (j< length - i):
-            if(j+1 < length and arr[j+1] < arr[j]):
+            if(j+1 < length and arr[j+1] <= arr[j]):
                 arr[j], arr[j+1] = arr[j+1], arr[j]
                 # temp = arr[j]
                 # arr[j] = arr[j+1]
@@ -24,8 +24,6 @@ def bubble_sort(arr):
                 noSwap = False
             j += 1
         if (noSwap): break
-            
-            
 
     return arr
 
