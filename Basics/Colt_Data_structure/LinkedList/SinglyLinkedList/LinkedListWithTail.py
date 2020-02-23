@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data = None):
+    def __init__(self, data=None):
         self.data = data
         self.next = None
 
@@ -11,7 +11,7 @@ class LinkedList:
         self.length = 0
 
     # insert an element after last item in the list
-    def push(self,val):
+    def push(self, val):
         newNode = Node(val)
         if self.head is None:
             self.head = newNode
@@ -19,14 +19,12 @@ class LinkedList:
         elif self.head is self.tail:
             self.head.next = newNode
             self.tail = newNode
-        
+
         else:
             self.tail.next = newNode
             self.tail = newNode
 
         self.length += 1
-
-        
 
     def printVals(self):
         if(self.length == 0):
@@ -38,7 +36,7 @@ class LinkedList:
             newNode = newNode.next
 
     def pop(self):
-        
+
         if self.length <= 0:
             return
         newNode = self.head
@@ -58,7 +56,7 @@ class LinkedList:
         self.tail = newNode
         newNode.next = None
         self.length -= 1
-    
+
     def removeFromHead(self):
         if(self.length == 0):
             return
@@ -70,7 +68,7 @@ class LinkedList:
         self.head = self.head.next
         self.length -= 1
 
-    def insertIntoHead(self,val):
+    def insertIntoHead(self, val):
         newNode = Node(val)
 
         if(self.length == 0):
@@ -78,19 +76,19 @@ class LinkedList:
             self.tail = newNode
             self.length += 1
             return
-        
+
         self.length += 1
         newNode.next = self.head
         self.head = newNode
 
-    def getValAtIndex(self,index):
+    def getValAtIndex(self, index):
         if(self.length <= 0):
             return None
-        if(index>self.length):
+        if(index > self.length):
             return "Index out of range"
         node = self.head
-        
-        for i in range(0,index+1):
+
+        for i in range(0, index+1):
             if(i != index):
                 node = node.next
         return node.data
@@ -107,38 +105,38 @@ class LinkedList:
                 node = node.next
         node.data = data
         return node.data
-    
-    def insertAtIndex(self,index,val):
-        if(index <0 and index > self.length):
+
+    def insertAtIndex(self, index, val):
+        if(index < 0 and index > self.length):
             return ("Invalid index")
         newNode = Node(val)
-        if(self.length == 0 ):
-            self.head  = newNode
+        if(self.length == 0):
+            self.head = newNode
             self.tail = newNode
-            self.length +=1
+            self.length += 1
             return
-        
+
         if(index == 0):
             newNode.next = self.head
             self.head = newNode
-            self.length +=1
+            self.length += 1
             return
         if(index == self.length):
             self.tail.next = newNode
             self.tail = newNode
             self.length += 1
             return
-        
+
         i = 1
         currentNode = self.head
-        while(i!= index):
+        while(i != index):
             currentNode = currentNode.next
-            i+= 1
+            i += 1
         newNode.next = currentNode.next
         currentNode.next = newNode
         self.length += 1
 
-    def removeAtIndex(self,index):
+    def removeAtIndex(self, index):
         if(index < 0 and index > self.length):
             return ("Invalid index")
         if(self.length == 0):
@@ -147,13 +145,47 @@ class LinkedList:
         if(index == 0):
             self.head = self.head.next
             self.length -= 1
-            return 
+            return
+
+        if(index == self.length-1):
+            node = self.head
+            for i in range(1, index):
+                node = node.next
+
+            node.next = None
+            self.tail = node
+            self.length -= 1
+            return
+
+        else:
+            node = self.head
+
+            for i in range(1, index):
+                node = node.next
+
+            node.next = node.next.next
+            self.length -= 1
+            return
+
+    def reverseList(self):
+        if(self.length == 0 or self.length == 1): 
+            return
         
-        if(index == self.length):
-            # TODO
-            pass
+        prevNode = None
+        currentNode = self.head
+        nextNode = self.head.next
 
+        self.tail = self.head
 
+        while(currentNode is not None):
+            currentNode.next = prevNode
+            prevNode = currentNode
+            currentNode = nextNode
+            if(nextNode is None):
+                continue
+            nextNode = nextNode.next
+
+        self.head = prevNode
 
 
 linkedList = LinkedList()
@@ -187,12 +219,28 @@ linkedList.push(30)
 linkedList.push(40)
 linkedList.insertIntoHead(1)
 # linkedList.printVals()
-# print(f" Head is {linkedList.head.data}, taile is {linkedList.tail.data}, length is {linkedList.length}") 
+# print(f" Head is {linkedList.head.data}, taile is {linkedList.tail.data}, length is {linkedList.length}")
 # print(linkedList.getValAtIndex(120))
-linkedList.setValAtIndex(0,0)
-linkedList.setValAtIndex(5,35)
-linkedList.setValAtIndex(1,1)
-linkedList.insertAtIndex(2,2)
+linkedList.setValAtIndex(0, 0)
+linkedList.setValAtIndex(5, 35)
+linkedList.setValAtIndex(1, 1)
+linkedList.insertAtIndex(2, 2)
 linkedList.printVals()
-
-
+print("Reversing Linked List")
+linkedList.reverseList()
+linkedList.printVals()
+print("Reversing list again")
+linkedList.reverseList()
+linkedList.printVals()
+print("Removing from index 2")
+linkedList.removeAtIndex(2)
+linkedList.printVals()
+print("Removing from head")
+linkedList.removeAtIndex(0)
+linkedList.printVals()
+print("Removing from tail")
+linkedList.removeAtIndex(linkedList.length-1)
+linkedList.printVals()
+print("Removing from index 2")
+linkedList.removeAtIndex(2)
+linkedList.printVals()
