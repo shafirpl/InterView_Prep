@@ -106,7 +106,52 @@ class doublyLinkedList:
         self.head = newNode
         return
         
+    def getValAtIndex(self,index):
+        if (index<0 or index>= self.length):
+            return "index out of range"
+        if(self.length == 0):
+            return None
+        node = self.head
+        for i in range(0,index+1):
+            if (i != index):
+                node = node.next
+        return node.data
 
+    def setValAtIndex(self,index,data):
+        if (index < 0 or index >= self.length):
+            return "index out of range"
+        if(self.length == 0):
+            return None
+        node = self.head
+        for i in range(0,index+1):
+            if (i != index):
+                node = node.next
+        node.data = data
+        return node.data
+
+
+    def getValAtIndexOptimized(self, index):
+        if (index < 0 or index >= self.length):
+            return "index out of range"
+        if(self.length == 0):
+            return None
+
+        halfLength = self.length // 2
+        if(index <= halfLength):
+            node = self.head
+            for i in range(0, index+1):
+                if (i != index):
+                    node = node.next
+        
+        else:
+            node = self.tail
+            count = self.length - 1
+
+            while(count != index):
+                count -= 1
+                node = node.prev
+
+        return node.data
 
 
 
@@ -144,7 +189,19 @@ doublyLinkedList.removeFromHead()
 doublyLinkedList.insertAtHead(30)
 doublyLinkedList.insertAtHead(20)
 doublyLinkedList.insertAtHead(10)
-doublyLinkedList.printList()
+doublyLinkedList.push(40)
+doublyLinkedList.push(40)
+# doublyLinkedList.printList()
+# print(doublyLinkedList.getValAtIndex(0))
+# print(doublyLinkedList.getValAtIndex(1))
+# print(doublyLinkedList.getValAtIndex(2))
+doublyLinkedList.setValAtIndex(4,50)
+print(doublyLinkedList.getValAtIndexOptimized(0))
+print(doublyLinkedList.getValAtIndexOptimized(1))
+print(doublyLinkedList.getValAtIndexOptimized(2))
+print(doublyLinkedList.getValAtIndexOptimized(3))
+print(doublyLinkedList.getValAtIndexOptimized(4))
+# doublyLinkedList.printList()
 
         
 
