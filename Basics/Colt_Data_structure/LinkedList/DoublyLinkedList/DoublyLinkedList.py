@@ -153,9 +153,60 @@ class doublyLinkedList:
 
         return node.data
 
+    def insert(self,index,data):
+        if (index<0 or index>= self.length):
+            return "Index out of range"
+        
+        if (self.length == 0):
+            return 
 
+        
+        if(index == 0):
+            self.insertAtHead(data)
+            return
+        
+        if(index == self.length - 1):
+            self.push(data)
+            return
 
+        newNode = Node(data)
+        
 
+        if(index <= self.length // 2):
+            prevNode = self.head
+            for i in range(1,index):
+                prevNode = prevNode.next
+
+        else:
+            prevNode = self.tail
+            i = self.length - 1
+            while(i > index - 1):
+                prevNode = prevNode.prev
+                i -= 1
+
+        nextNode = prevNode.next
+        prevNode.next = newNode
+        newNode.prev = prevNode
+        newNode.next = nextNode
+        nextNode.prev = newNode
+        self.length += 1
+        return
+
+    def remove(self,index,data):
+        if(index<0 or index>= self.length):
+            return "Index out of range"
+        
+        if(self.length == 0):
+            return
+
+        if(self.length == 1 or index == 0):
+            self.removeFromHead()
+            return
+
+        # TODO other stuff
+
+        
+        
 
 doublyLinkedList = doublyLinkedList()
 doublyLinkedList.push(10)
@@ -196,12 +247,17 @@ doublyLinkedList.push(40)
 # print(doublyLinkedList.getValAtIndex(1))
 # print(doublyLinkedList.getValAtIndex(2))
 doublyLinkedList.setValAtIndex(4,50)
-print(doublyLinkedList.getValAtIndexOptimized(0))
-print(doublyLinkedList.getValAtIndexOptimized(1))
-print(doublyLinkedList.getValAtIndexOptimized(2))
-print(doublyLinkedList.getValAtIndexOptimized(3))
-print(doublyLinkedList.getValAtIndexOptimized(4))
+# print(doublyLinkedList.getValAtIndexOptimized(0))
+# print(doublyLinkedList.getValAtIndexOptimized(1))
+# print(doublyLinkedList.getValAtIndexOptimized(2))
+# print(doublyLinkedList.getValAtIndexOptimized(3))
+# print(doublyLinkedList.getValAtIndexOptimized(4))
 # doublyLinkedList.printList()
+doublyLinkedList.insert(0,0)
+doublyLinkedList.insert(doublyLinkedList.length-1,100)
+doublyLinkedList.insert(5,45)
+doublyLinkedList.insert(2,15)
+doublyLinkedList.printList()
 
         
 
