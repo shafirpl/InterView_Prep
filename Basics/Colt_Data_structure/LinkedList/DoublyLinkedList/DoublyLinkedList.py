@@ -209,6 +209,7 @@ class doublyLinkedList:
             self.tail.prev = None
             self.tail = prevNode
             self.length -= 1
+            # we could use pop method here instead of this whole logic
             return
 
 
