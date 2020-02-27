@@ -192,7 +192,7 @@ class doublyLinkedList:
         self.length += 1
         return
 
-    def remove(self,index,data):
+    def remove(self,index):
         if(index<0 or index>= self.length):
             return "Index out of range"
         
@@ -203,7 +203,46 @@ class doublyLinkedList:
             self.removeFromHead()
             return
 
-        # TODO other stuff
+        if(index == self.length - 1):
+            prevNode = self.tail.prev
+            prevNode.next = None
+            self.tail.prev = None
+            self.tail = prevNode
+            self.length -= 1
+            return
+
+
+
+
+        if (index <= self.length // 2):
+            prevNode = self.head
+
+            for i in range(1,index):
+                prevNode = prevNode.next
+
+        else:
+            prevNode = self.tail
+            i = self.length - 1
+
+            while(i> index - 1):
+                i -= 1
+                prevNode = prevNode.prev
+
+            
+        deletedNode = prevNode.next
+        nextNode = deletedNode.next
+
+        prevNode.next = nextNode
+        if(nextNode is not None):
+            nextNode.prev = prevNode
+            
+        deletedNode.prev = None
+        deletedNode.next = None
+
+        self.length -= 1
+
+        return
+
 
         
         
@@ -257,6 +296,15 @@ doublyLinkedList.insert(0,0)
 doublyLinkedList.insert(doublyLinkedList.length-1,100)
 doublyLinkedList.insert(5,45)
 doublyLinkedList.insert(2,15)
+# doublyLinkedList.printList()
+
+doublyLinkedList.remove(0)
+doublyLinkedList.remove(doublyLinkedList.length - 1)
+
+
+doublyLinkedList.remove(5)
+doublyLinkedList.remove(4)
+doublyLinkedList.remove(2)
 doublyLinkedList.printList()
 
         
