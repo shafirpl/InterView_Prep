@@ -24,6 +24,36 @@ class BinarySearchTree:
             self.preOrderHelper(current.right,visited)
         return visited
 
+    def postOrder(self):
+        current = self.root
+        visited = []
+
+        visited = self.postOrderHelper(current, visited)
+        return visited
+
+    def postOrderHelper(self, current, visited):
+        if(current.left is not None):
+            self.postOrderHelper(current.left, visited)
+        if(current.right is not None):
+            self.postOrderHelper(current.right, visited)
+        visited.append(current.value)
+        return visited
+
+    def inOrder(self):
+        current = self.root
+        visited = []
+
+        visited = self.inOrderHelper(current, visited)
+        return visited
+
+    def inOrderHelper(self, current, visited):
+        if(current.left is not None):
+            self.inOrderHelper(current.left, visited)
+        visited.append(current.value)
+        if(current.right is not None):
+            self.inOrderHelper(current.right, visited)
+        return visited
+
 
     def search(self, value):
         if self.root is None:

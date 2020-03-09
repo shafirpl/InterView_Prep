@@ -1,5 +1,5 @@
 import unittest
-from PreOrder import BinarySearchTree
+from DFS import BinarySearchTree
 
 
 class BinarySearchTreeTest(unittest.TestCase):
@@ -84,6 +84,29 @@ class BinarySearchTreeTest(unittest.TestCase):
 
         self.assertEqual(tree.preOrder(),[10,6,3,8,15,20])
         # print(tree.preOrder())
+
+    def testPostOrder(self):
+        tree = BinarySearchTree()
+        tree.insert(10)
+        tree.insert(6)
+        tree.insert(15)
+        tree.insert(3)
+        tree.insert(8)
+        tree.insert(20)
+
+        self.assertEqual(tree.postOrder(), [3,8,6,20,15,10])
+
+    def testinOrder(self):
+        tree = BinarySearchTree()
+        tree.insert(10)
+        tree.insert(6)
+        tree.insert(15)
+        tree.insert(3)
+        tree.insert(8)
+        tree.insert(20)
+
+        self.assertEqual(tree.inOrder(), [3, 6, 8, 10, 15, 20])
+
         
 
 
