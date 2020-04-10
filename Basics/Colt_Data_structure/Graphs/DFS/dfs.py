@@ -61,6 +61,47 @@ class Graphs:
 
         for item in self.adjancy_list[vertex]:
             self.dfsHelper(item,visited,result)
+    # the recursive and iterative result won't match exactly
+    # however the way the iterative and recursive solution traverse
+    # the list are same here, so it is fine
+    # https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass/learn/lecture/8344890#questions
+    # watch from 3:56
+    def dfsIterative(self,vertex):
+        stack = []
+        stack.append(vertex)
+        result = []
+        visited = {}
+
+        while len(stack)>0:
+            poped_vertex = stack.pop()
+            if visited.get(poped_vertex) is None:
+                result.append(poped_vertex)
+                visited[poped_vertex] = True
+            for item in self.adjancy_list[poped_vertex]:
+                if visited.get(item) is None:
+                    stack.append(item)
+        return result
+
+    def bfs(self, vertex):
+        visited = {}
+        result = []
+        queue = []
+
+        queue.append(vertex)
+
+        while len(queue):
+            current_vertex = queue.pop(0)
+            if visited.get(current_vertex) is None:
+                visited[current_vertex] = True
+                result.append(current_vertex)
+            for item in self.adjancy_list[current_vertex]:
+                if visited.get(item) is None:
+                    visited[item] = True
+                    result.append(item)
+                    queue.append(item)
+        return result
+
+
 
         
 g = Graphs()
@@ -77,10 +118,13 @@ g.addEdge("A", "C")
 g.addEdge("B", "D")
 g.addEdge("C", "E")
 g.addEdge("D", "E")
+
 g.addEdge("D", "F")
 g.addEdge("E", "F")
-# graph.printGraph()
+# g.printGraph()
 # print("Removing vertex")
 # graph.removeVertex("A")
 # graph.printGraph()
 print(g.dfs("A"))
+print(g.dfsIterative("A"))
+print(g.bfs("A"))
