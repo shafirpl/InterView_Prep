@@ -1,3 +1,4 @@
+# Explanation: https://youtu.be/F1_KY1kaxIw
 def quickSort(arr,start = 0, end = None):
     if(end == None):
         end = len(arr) - 1
@@ -24,3 +25,4 @@ def findPivot(arr,start,end):
 
 # print(quickSort([8,1,2,3,4,5,6,7]))
 # print(quickSort([10,5,90,0,10]))
+

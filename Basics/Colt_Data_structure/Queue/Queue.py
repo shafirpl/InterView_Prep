@@ -4,6 +4,8 @@ class Node:
         self.val = val
         self.next = None
 
+# in java, use a LinkedList class, use add method (compared to push method which
+# adds item at the front/head) to enqueue/add item to the end, and pop to remove item from head/front/begining
 
 class Queue:
 

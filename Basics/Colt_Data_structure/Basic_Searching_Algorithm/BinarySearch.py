@@ -2,32 +2,40 @@
 # middle point as we already checked it against something
 
 
-def binary_search_recursive(arr,num,start = 0, end = None):
+def binary_search_recursive(arr, num, start=0, end=None):
     length = len(arr)
-    if (length == 0): return -1
-    if (end==None): end = length - 1
-    middle = (start+end)//2
-    if(arr[middle] == num): return middle
-    elif(start > end): return -1
+    if length == 0:
+        return -1
+    if end is None:
+        end = length - 1
+    middle = (start + end) // 2
+    if arr[middle] == num:
+        return middle
+    elif start > end:
+        return -1
     else:
-        if(num>arr[middle]): return binary_search_recursive(arr,num,middle+1,end)
-        else: return binary_search_recursive(arr,num,start,middle-1)
+        if num > arr[middle]:
+            return binary_search_recursive(arr, num, middle + 1, end)
+        else:
+            return binary_search_recursive(arr, num, start, middle - 1)
 
-def binary_search_iterative(arr,num):
+
+def binary_search_iterative(arr, num):
     start = 0
     end = len(arr) - 1
-    if( len(arr) == 0): return -1
+    if len(arr) == 0:
+        return -1
     middle = (start + end) // 2
-    if (arr[middle] == num): return middle
+    if arr[middle] == num:
+        return middle
 
-    while(start <= end):
-        if(num> arr[middle]):
+    while start <= end:
+        if num > arr[middle]:
             start = middle + 1
             middle = start + end // 2
-        elif(num == arr[middle]): 
+        elif num == arr[middle]:
             return middle
         else:
             end = middle - 1
-            middle = (start + middle) //2
+            middle = (start + middle) // 2
     return -1
-
